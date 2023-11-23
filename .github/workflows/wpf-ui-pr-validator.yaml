@@ -1,12 +1,17 @@
 name: wpf-ui-pr-validator
 
+run-name: Running first party validation for ${{ inputs.chosen-runner }}
 on:
-  pull_request:
-    branches: [development]
-  push:
-    branches: [development]
-
   workflow_dispatch:
+    inputs:
+      chosen-runner:
+        required: true
+        type: choice
+        options:
+        - alex-arm64-linux
+        - alex-arm64-windows
+        - 4-core-ubuntu-benchmark-perf-test
+        - 8-core-windows-benchmark-perf-test
 
 jobs:
   build:
