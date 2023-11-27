@@ -1,6 +1,6 @@
 name: wpf-ui-pr-validator
 
-run-name: Running first party validation for ${{ inputs.chosen-runner }}
+run-name: Running smoke test on ${{ inputs.chosen-runner }}
 on:
   workflow_dispatch:
     inputs:
@@ -15,12 +15,12 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ${{ inputs.chosen-runner }}
     steps:
       - uses: actions/checkout@v4
       - uses: microsoft/setup-msbuild@v1.3
         with:
-          msbuild-architecture: x64
+          msbuild-architecture: arm64
       - uses: nuget/setup-nuget@v1
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
